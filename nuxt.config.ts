@@ -1,9 +1,7 @@
 export default {
   head: {
     title: 'Facebook',
-    htmlAttrs: {
-      lang: 'en'
-    },
+    htmlAttrs: { lang: 'pt-br' },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -23,20 +21,19 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/fontawesome'
   ],
+
   styleResources: {
     scss: ['@/components/bosons/*.scss']
   },
 
   fontawesome: {
     component: 'fa',
-    icons: {
-      solid: true,
-      brands: true
-    }
+    icons: { solid: true, brands: true }
   },
 
   modules: ['@nuxtjs/axios'],
 
-  axios: {},
+  axios: { baseURL: 'http://localhost:3333' },
+
   build: {}
 }
