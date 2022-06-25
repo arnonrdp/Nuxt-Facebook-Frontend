@@ -16,11 +16,7 @@ export default {
 
   components: [{ path: '@/components/', pathPrefix: false }],
 
-  buildModules: [
-    '@nuxt/typescript-build',
-    '@nuxtjs/style-resources',
-    '@nuxtjs/fontawesome'
-  ],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/style-resources', '@nuxtjs/fontawesome', 'cookie-universal-nuxt'],
 
   styleResources: {
     scss: ['@/components/bosons/*.scss']
