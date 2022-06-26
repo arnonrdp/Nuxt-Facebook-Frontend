@@ -9,7 +9,7 @@ interface CreatePayload {
 type Token = string | null
 
 @Module({ name: 'auth', namespaced: true, stateFactory: true })
-export default class Atuh extends VuexModule {
+export default class Auth extends VuexModule {
   private token = null as Token
 
   public get $token() {

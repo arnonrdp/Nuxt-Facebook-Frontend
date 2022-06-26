@@ -1,13 +1,13 @@
 <template>
-  <form>
+  <form @submit.prevent="onSubmit">
     <div class="fom-field">
-      <BaseInput type="email" placeholder="E-mail" />
+      <BaseInput v-model="email" type="email" placeholder="E-mail" />
     </div>
     <div class="fom-field">
-      <BaseInput type="password" placeholder="Senha" />
+      <BaseInput v-model="password" type="password" placeholder="Senha" />
     </div>
 
-    <NuxtLink to="/recovery"> Esqueceu a senha? </NuxtLink>
+    <NuxtLink to="/recovery">Esqueceu a senha?</NuxtLink>
 
     <BaseButton text="Entrar" />
   </form>
@@ -15,8 +15,29 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { auth } from '@/store'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    async onSubmit() {
+      try {
+        await auth.create({
+          email: this.email,
+          password: this.password
+        })
+        this.$router.push('/')
+      } catch (error) {
+        this.$notify({ type: 'error', text: 'Usuário ou senha inválidos' })
+      }
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>
