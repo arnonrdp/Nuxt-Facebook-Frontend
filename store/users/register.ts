@@ -1,6 +1,6 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { $axios } from '@/utils/nuxt-instance'
-import { User } from '~/models'
+import { User } from '@/models'
 
 interface CreatePayload {
   email: string

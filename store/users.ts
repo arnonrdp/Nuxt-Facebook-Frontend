@@ -1,8 +1,8 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators'
 import { $axios, $cookies } from '@/utils/nuxt-instance'
-import { User } from '~/models'
+import { User } from '@/models'
 
-@Module({ name: 'users', namespaced: true, stateFactory: true })
+@Module({ name: 'users', stateFactory: true, namespaced: true })
 export default class Users extends VuexModule {
   private user = {} as User
 
@@ -15,11 +15,25 @@ export default class Users extends VuexModule {
     this.user = user
   }
 
-  @Action
+  @Mutation
+  SET_USER_AVATAR(avatar: User['avatar']) {
+    this.user.avatar = avatar
+  }
+
+  @Action({ rawError: true })
   public async show() {
     if (!$cookies.get('token')) return
 
     const user = await $axios.$get('/users')
+
+    this.context.commit('UPDATE_USER', user)
+  }
+
+  @Action
+  public async updateUser(payload: User) {
+    if (!$cookies.get('token')) return
+
+    const user = await $axios.$put('/users', payload)
 
     this.context.commit('UPDATE_USER', user)
   }

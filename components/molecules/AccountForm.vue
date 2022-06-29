@@ -1,18 +1,18 @@
 <template>
-  <form>
+  <form @submit.prevent="onSubmit">
     <div class="form-field">
       <label>Nome</label>
-      <BaseInput />
+      <BaseInput v-model="user.name" />
     </div>
     <div class="form-field">
       <label>Nome do usuário</label>
-      <BaseInput />
+      <BaseInput v-model="user.username" />
     </div>
     <br />
     <br />
     <div class="form-field">
       <label>E-mail</label>
-      <BaseInput readonly />
+      <BaseInput v-model="user.email" readonly />
     </div>
     <div class="form-field">
       <label>Nova senha</label>
@@ -30,8 +30,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { users } from '@/store'
 
-export default Vue.extend({})
+export default Vue.extend({
+  data() {
+    return {
+      user: { ...users.$single }
+    }
+  },
+  methods: {
+    async onSubmit() {
+      await users.updateUser({ ...this.user })
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>
