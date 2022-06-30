@@ -29,7 +29,7 @@ export default {
 
   modules: ['@nuxtjs/axios'],
 
-  axios: { baseURL: 'http://localhost:3333' },
+  axios: { baseURL: 'https://arnon-facebook-api.herokuapp.com/' },
 
   build: {}
 }

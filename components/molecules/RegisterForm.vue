@@ -23,7 +23,7 @@ export default Vue.extend({
       try {
         await userRegister.create({
           email: this.email,
-          redirectUrl: 'http://localhost:3000/register'
+          redirectUrl: 'https://arnon-facebook.vercel.app/register'
         })
 
         this.email = ''
@@ -41,14 +41,17 @@ export default Vue.extend({
 form {
   display: grid;
   grid-gap: 0.8rem;
+
   button {
     width: 100%;
   }
+
   a {
     justify-self: end;
     font-size: 14px;
     color: color(white);
   }
+
   input {
     width: 100% !important;
     padding: 0.7rem 1.2rem;
